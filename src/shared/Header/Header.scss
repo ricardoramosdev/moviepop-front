@@ -1,9 +1,15 @@
+@import "../../themeColor.css";
 .nav{
     display: flex;
     justify-content: flex-end;
     padding:2rem 1rem 0 0 ;
+    
     a{
-        color: white;
+        color: var(--tertiary-color);
         padding-left: 1rem;
+        
+    }
+    a.active{
+        color: var(--secondary-color);
     }
 }
