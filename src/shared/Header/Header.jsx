@@ -10,7 +10,7 @@ export const Header = () => {
     <>
     <div className='nav'>
     
-        <NavLink exact={true} to="/"><FontAwesomeIcon icon={faHome} /></NavLink>
+        <NavLink exact="true" to="/"><FontAwesomeIcon icon={faHome} /></NavLink>
         
         <NavLink to="/catalog"><FontAwesomeIcon icon={faMagnifyingGlass} /></NavLink>
     

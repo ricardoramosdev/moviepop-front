@@ -1,27 +1,16 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const URL = process.env.API_URL;
-export const MovieList = () => {
-  const [movieList, setMovieList]= useState([])
-  let getMovies = async ()=>{
-    try{
-      let response = await axios.get(`${URL}`)
-      let movieDB = response.data
-      setMovieList(movieDB)
-      console.log(movieDB)
-    }catch(error){
-      console.log('Error al comunicarse con la API'+ error)
-    }
-  }
-  getMovies();
+export const MovieList = ({search,movieList}) => {
+  
   return (
     <>
-      <div className="row">
+      <div className="row" >
         {movieList.map(movie=>(
-          <div className="movieCard" key={movie.id}>
-          <img src={movie.img} alt={movie.name} />
-          <h1>{movie.title}</h1>
+          <div className="movieCard" key={movie.show.id}>
+          <img src={movie.show.image.medium} alt={movie.show.name} loading="lazy"/>
+          <p>{movie.show.name}</p>
           </div>
         ))}
       </div>
