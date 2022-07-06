@@ -1,19 +1,19 @@
-import axios from 'axios'
+import { Card, Col, Row } from 'antd'
 import React, { useEffect, useState } from 'react'
+import "./MovieList.scss"
 
-const URL = process.env.API_URL;
-export const MovieList = ({search,movieList}) => {
+export const MovieList = ({ results}) => {
   
   return (
     <>
-      <div className="row" >
-        {movieList.map(movie=>(
-          <div className="movieCard" key={movie.show.id}>
-          <img src={movie.show.image.medium} alt={movie.show.name} loading="lazy"/>
-          <p>{movie.show.name}</p>
-          </div>
+      <Row className='card-container' gutter={8} >
+        {results.map(movie=>(
+          <Col className="movie-card"span={12} key={movie.show.id}>
+          <img className='movie-img' src={movie.show.image.medium} alt={movie.show.name} loading="lazy"/>
+          <h3 className='movie-description'>{movie.show.name}</h3>
+          </Col>
         ))}
-      </div>
+      </Row>
     </>
   )
 }
