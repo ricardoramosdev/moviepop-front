@@ -1,0 +1,47 @@
+ @import "../../themeColor.css";
+body{
+    color:white
+}
+.background-img{
+    display: none;
+}
+.cover-img{
+    width: 100%;
+    padding: 1rem;
+}
+.cover{
+position: relative;
+    .star-component{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        color:gold;
+    }
+}
+.movie-data-list{
+    color: var(--tertiary-color);
+    font-weight: bolder;
+    list-style: none;
+    padding-left: 1rem;
+}
+.movie-summary{
+    padding: 0 1rem 1rem 1rem;
+    p{
+        margin-top: 1rem;
+    }
+}
+.star{
+    position: absolute;
+    bottom: 1rem;
+    right: 1.5rem;
+    color: gold;
+    font-size: 2rem;
+}
+.movie-data{
+    position: relative;
+    .favorite{
+        position: absolute;
+        right: 2rem;
+        color: white;
+        
+}}
