@@ -1,13 +1,13 @@
 @import "../../themeColor.css";
 .card-container {
-    padding: 1rem;
+  padding: 1rem;
+
   .movie-card {
+    padding-bottom: 1rem;
     
     text-align: center;
     .movie-img {
-      // display: none;
       width: 100%;
-      //    object-fit: cover;
     }
     .movie-description{
         color: white !important;
