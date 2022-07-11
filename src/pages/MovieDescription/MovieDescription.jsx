@@ -87,7 +87,7 @@ export const MovieDescription = () => {
           <h2>Sinopsis</h2>
           <div dangerouslySetInnerHTML={{__html:movie.summary}}></div>
         </div>
-        <Comments movieID={movieID}/>
+        <Comments movieID={{...movie}}/>
       </main>
     </>
   );
