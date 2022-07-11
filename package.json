@@ -1,9 +1,6 @@
 {
   "name": "moviepop-front",
   "version": "0.1.0",
-  "engines": {
-    "node": "16.9.x"
-  },
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
