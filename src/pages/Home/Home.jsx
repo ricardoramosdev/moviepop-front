@@ -1,3 +1,4 @@
+
 import React from "react";
 import popcorn from "../../assets/popcorn.svg";
 import { Header } from "../../shared/Header/Header";
@@ -15,5 +16,8 @@ export const Home = () => {
       </div>
      
     </>
-  );
-};
+  )
+}
+   
+
+
