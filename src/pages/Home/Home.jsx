@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-export const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
-=======
 import React from "react";
 import popcorn from "../../assets/popcorn.svg";
 import { Header } from "../../shared/Header/Header";
@@ -26,4 +17,3 @@ export const Home = () => {
     </>
   );
 };
->>>>>>> dce7901894ee9eb1a159ef77e80603362c128fd3
