@@ -2,10 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Header } from "../../shared/Header/Header";
 import { MovieList } from "../MovieList/MovieList";
-import "./Catalog.scss";
-const URL = "http://api.tvmaze.com/search/shows?q=star%20wars";
-const json = require('../../database.json')
-export const Catalog = () => {
+import "./Favorites.scss";
+const URL = process.env.REACT_APP_API_URL
+export const Favorites = () => {
   const [movieList, setMovieList] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -16,7 +15,7 @@ let movieDB =[]
   let getMovies = async () => {
 
     try{
-    let response = await axios.get(`${URL}`)
+    let response = await axios.get(`${URL}/favorites`)
     movieDB = response.data 
     setMovieList(movieDB);
     }catch(error){
