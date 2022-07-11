@@ -1,10 +1,13 @@
 import { faHeart, faStarHalf } from "@fortawesome/free-regular-svg-icons";
 import { faArrowLeft, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar, Comment, Tooltip } from "antd";
 import axios from "axios";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import "../../shared/Header/Header.scss";
+import { Comments } from "../Comment/Comments";
 import "./MovieDescription.scss";
 // import {Star, StarRating} from "./Star"
 const URL = "https://api.tvmaze.com/shows";
@@ -84,7 +87,7 @@ export const MovieDescription = () => {
           <h2>Sinopsis</h2>
           <div dangerouslySetInnerHTML={{__html:movie.summary}}></div>
         </div>
-        
+        <Comments movieID={movieID}/>
       </main>
     </>
   );
