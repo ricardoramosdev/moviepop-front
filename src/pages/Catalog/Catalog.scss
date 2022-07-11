@@ -1,0 +1,25 @@
+@import "../../themeColor.css";
+.search-container{
+    display: flex;
+    justify-content: center;
+}
+.searchBar{
+    color: white;
+    margin-top: 1rem;
+    width: 100%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: #ffffff15;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    
+}
+h2{color: white;
+text-align: center;
+padding-top: 1rem;}
+.searchBar::placeholder{
+    
+        color: white;
+    
+}
