@@ -1,26 +1,40 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Avatar, Button, Comment, Form, Tooltip } from "antd";
+import { Avatar, Button, Comment, Form, List, Tooltip } from "antd";
 import axios from "axios";
 import moment from "moment";
 import TextArea from "antd/lib/input/TextArea";
+import "./Comments.scss"
 const URL = process.env.REACT_APP_API_URL;
 
 export const Comments = ({ movieID }) => {
   const [commentList, setCommentList] = useState([]);
-
+  const [renderList, setRenderList] =useState([]);
+  
+  //RENDERIZAR COMENTARIOS
+//traer los datos de la base de datos de comentrios
+ 
   let getComments = async () => {
     let response = await axios.get(`${URL}/comments`);
-    console.log(response)
-    // setCommentList(JSON.stringify(response.data));
-    console.log('desde Comment'+JSON.stringify(movieID))
+    let {Comments}=response.data
+    setCommentList(Comments);
   };
 
-  useEffect(()=>{
-    getComments()
-  },[])
-
+  //filtrar los datos que incluyan el id de la pelicula
+//pintar en dom
+  let filter = ()=>{
+    console.log(commentList)
+    console.log(movieID)
+    let result = commentList.filter(el=> el.movieID==movieID.id)
+    console.log(result)
+    setRenderList(result)
+  }
+//AGREGAR NUEVOS COMENTARIOS
+//Tomar los datos del input 
+//ordenrlos en el formato que espera la BD
+//mandar los datos
+ 
   const Editor = ({ onChange, onSubmit, submitting, value }) => (
     <>
       <Form.Item>
@@ -59,6 +73,14 @@ export const Comments = ({ movieID }) => {
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+  useEffect(()=>{
+    getComments();
+    
+  },[])
+
+  useEffect(()=>{
+    filter()
+  },[commentList])
 
   return (
     <>
@@ -79,24 +101,27 @@ export const Comments = ({ movieID }) => {
       />
         </div>
         <div className="comment-list">
+        <List
+    className="comment-list"
+    header={`${renderList.length} Comments`}
+    itemLayout="horizontal"
+    dataSource={renderList}
+    renderItem={item => (
+      <li>
         <Comment
-            author={<a>Han Solo</a>}
-            avatar={
-              <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
-            }
-            content={
-              <p>
-                We supply a series of design principles, practical patterns and
-                high quality design resources (Sketch and Axure), to help people
-                create their product prototypes beautifully and efficiently.
-              </p>
-            }
-            datetime={
-              <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
-                <span>{moment().fromNow()}</span>
-              </Tooltip>
-            }
-          />
+          author={item.userID}
+          avatar={item.avatar}
+          content={item.comment}
+          datetime={
+            <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
+              <span>{moment().subtract(2, 'days').fromNow()}</span>
+            </Tooltip>
+          }
+        />
+      </li>
+    )}
+  />
+       
         </div>
       </div>
     </>
