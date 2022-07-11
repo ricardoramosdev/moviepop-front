@@ -5,7 +5,6 @@ import {faHome, faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons"
 import {NavLink} from "react-router-dom"
 
 export const Header = () => {
-    // let params= useParams();
   return (
     <>
     <div className='nav'>
