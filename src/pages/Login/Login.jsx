@@ -34,10 +34,8 @@ export const Login = () => {
     setIsModalVisible(false);
   };
   const registerUser = async (formData)=>{
-    console.log(formData)
     try{
       const { data } =await axios.post(`${URL}/user`, formData)
-      console.log("data ususario", data.usuarioNuevo)
       Modal.info({
         title: 'Usuario creado',
         icon: <CheckCircleOutlined style={{ color: "#52c41a" }} />,

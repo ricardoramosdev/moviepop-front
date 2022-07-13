@@ -90,7 +90,6 @@ export const Comments = ({ movieID }) => {
       comment:value
     }
     const sendComent = await axios.put(`${URL}/comment`,commentData)
-    console.log(sendComent)
     
   };
 

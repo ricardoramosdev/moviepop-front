@@ -13,7 +13,6 @@ export const Favorites = () => {
   let getFavoritesMovies = () => {
     let favMovies = JSON.parse(localStorage.getItem('currentUser')).favoriteMovie
     setMovieList(favMovies);
-    console.log(favMovies)
     }
   
   

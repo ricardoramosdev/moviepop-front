@@ -22,24 +22,18 @@ export const MovieDescription = () => {
   const [movie, setMovie] = useState({});
   const[image, setImage]=useState({})
   const[rating, setRating]=useState(0)
-  console.log(movieID);
  
   const displayMovie = async () => {
     try {
       const response = await axios.get(`${URL}/${movieID}`);
       
-      console.log(response.data)
       setMovie(response.data)
       setImage(response.data.image)
-
       setRating(+response.data.rating.average)
 
-      // console.log(movie.show.name);
     } catch(error) {
       const display = json.filter(el => el.show.id == movieID);
       let displayshow = {...display}
-     
-      
       setMovie(...display);
       console.log("error al conectarse", error);
     }
@@ -47,9 +41,7 @@ export const MovieDescription = () => {
 
 
   //Favoritos
-  // let favoritesMovies = auth.user?.favoriteMovie.map(el=>JSON.parse(el))
   let favoritesMovies = auth.user?.favoriteMovie
-  console.log(favoritesMovies)
   const [favorite, setFavorite] = useState(true)
   const [favoritesList, setFavoriteList] = useState([])
     //compruevo si existe en la base de datos
@@ -59,20 +51,17 @@ export const MovieDescription = () => {
   
   let user =JSON.parse(localStorage.getItem('currentUser'))
   
+  //comprobar si esta en la lista de favoritos
   const refreshFavorite = ()=>{
   let isFavorite = user?.favoriteMovie.some(m=>m.id==(movieID))
-  console.log(isFavorite)
-  console.log(user?.favoriteMovie)
-  console.log(user?.favoriteMovie.some(m=>m.id==(movieID)))
+  //setear el estado de favorito
   setFavorite(isFavorite)
 
 }
+//renderizado condicional del boton fav
   const toogleFavorite =  ()=>{
-    //comprobar si esta en la lista de favoritos
     
    
-    //setear el estado de favorito
-    //renderizado condicional del boton fav
     //funcion toogle para cambiar estado
     handleFavoritesDB()
   }
@@ -80,24 +69,14 @@ export const MovieDescription = () => {
     setFavorite(!favorite)
 
     if(favorite){
-      console.info('sacar de fav')
-
-      
       let updateUserFavorites = user.favoriteMovie.filter(el=>el.id!=movieID)
-      console.log(updateUserFavorites)
       let removeFavorite = await axios.put(`${dbURL}/user/${auth.user._id}`,(user,{favoriteMovie:updateUserFavorites}))
       localStorage.setItem("currentUser", JSON.stringify(removeFavorite.data))
-
-      console.log(removeFavorite)
     }else{
       try{
-      console.info('agregar a fav')
       let updateUserFavorites = [...user.favoriteMovie,{...movie}]
-      console.log(updateUserFavorites)
       let addFavorite = await axios.put(`${dbURL}/user/${auth.user._id}`, (user,{favoriteMovie:updateUserFavorites}));
       localStorage.setItem("currentUser", JSON.stringify(addFavorite.data))
-
-      console.log(addFavorite)
       }catch(error){
         console.log(error)
       }
@@ -138,7 +117,6 @@ export const MovieDescription = () => {
             alt={movie.name}
             className="cover-img"
           />
-          {/* <img src={movie.image.medium} alt={movie.name} className="cover-img" /> */}
         <div className="star">
           {Array.from({ length: 5 }, (v, i) => (
           <span data-star-id={i + 1}  key={`star_${i + 1}`} >
