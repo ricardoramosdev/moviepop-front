@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Header } from "../../shared/Header/Header";
 import { MovieList } from "../MovieList/MovieList";
 import "./Catalog.scss";
-const URL = "http://api.tvmaze.com/search/shows?q=star%20wars";
+const URL = "https://api.tvmaze.com/search/shows?q=star%20wars";
 const json = require('../../database.json')
 export const Catalog = () => {
   const [movieList, setMovieList] = useState([]);
