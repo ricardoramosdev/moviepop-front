@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Header } from "../../shared/Header/Header";
 import { MovieList } from "../MovieList/MovieList";
 import "./Catalog.scss";
-const URL = "http://api.tvmaze.com/search/shows?q=star%20wars";
+const URL = "https://api.tvmaze.com/search/shows?q=star%20wars";
 const json = require('../../database.json')
 export const Catalog = () => {
   const [movieList, setMovieList] = useState([]);
@@ -17,7 +17,7 @@ let movieDB =[]
 
     try{
     let response = await axios.get(`${URL}`)
-    movieDB = response.data 
+    movieDB = response.data.map(el=>el.show) 
     setMovieList(movieDB);
     }catch(error){
       setMovieList(json)
@@ -33,7 +33,7 @@ let movieDB =[]
   };
    //Filtro el objeto segun parametros de busqueda
    const results = !search ? movieList : movieList.filter((el) =>
-   el.show.name.toLowerCase().includes(search.toLowerCase()));
+   el.name.toLowerCase().includes(search.toLowerCase()));
 
    
   useEffect(() => {

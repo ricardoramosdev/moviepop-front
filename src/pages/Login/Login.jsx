@@ -7,6 +7,9 @@ import  "./Login.scss"
 import axios from "axios";
 import { useAuth } from "../../auth/useAuth";
 import { CheckCircleOutlined } from "@ant-design/icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router-dom";
 
 const URL = process.env.REACT_APP_API_URL;
 
@@ -31,10 +34,8 @@ export const Login = () => {
     setIsModalVisible(false);
   };
   const registerUser = async (formData)=>{
-    console.log(formData)
     try{
       const { data } =await axios.post(`${URL}/user`, formData)
-      console.log("data ususario", data.usuarioNuevo)
       Modal.info({
         title: 'Usuario creado',
         icon: <CheckCircleOutlined style={{ color: "#52c41a" }} />,
@@ -51,7 +52,12 @@ export const Login = () => {
  
   return (
     <>
-    
+    <header className="nav">
+       
+       <NavLink to={-1} >
+         <FontAwesomeIcon icon={faArrowLeft} />
+       </NavLink>
+     </header>
       <div className="logoContainer">
         <img src={logo} alt="moviepop logo" />
       </div>

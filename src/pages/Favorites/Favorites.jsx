@@ -1,29 +1,20 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../auth/useAuth";
 import { Header } from "../../shared/Header/Header";
 import { MovieList } from "../MovieList/MovieList";
-import "./Catalog.scss";
-const URL = "http://api.tvmaze.com/search/shows?q=star%20wars";
-const json = require('../../database.json')
-export const Catalog = () => {
+import "./Favorites.scss";
+export const Favorites = () => {
   const [movieList, setMovieList] = useState([]);
   const [search, setSearch] = useState("");
 
+  let auth = useAuth();
 
-let movieDB =[]
- 
   //Tomo el objeto de la API y pinto
-  let getMovies = async () => {
-
-    try{
-    let response = await axios.get(`${URL}`)
-    movieDB = response.data 
-    setMovieList(movieDB);
-    }catch(error){
-      setMovieList(json)
-      console.log('Error al comunicarse con la API'+ error)
+  let getFavoritesMovies = () => {
+    let favMovies = JSON.parse(localStorage.getItem('currentUser')).favoriteMovie
+    setMovieList(favMovies);
     }
-  };
+  
   
  
   // funcion de busqueda
@@ -33,11 +24,11 @@ let movieDB =[]
   };
    //Filtro el objeto segun parametros de busqueda
    const results = !search ? movieList : movieList.filter((el) =>
-   el.show.name.toLowerCase().includes(search.toLowerCase()));
+   el.name.toLowerCase().includes(search.toLowerCase()));
 
    
   useEffect(() => {
-    getMovies();
+    getFavoritesMovies();
   }, []);
   return (
     <>
@@ -51,7 +42,7 @@ let movieDB =[]
           onChange={handleChange}
         />
       </div>
-      <h2>Películas</h2>
+      <h2>Películas Favoritas</h2>
       
       <MovieList results={results} />
     </>
