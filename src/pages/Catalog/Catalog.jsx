@@ -17,7 +17,7 @@ let movieDB =[]
 
     try{
     let response = await axios.get(`${URL}`)
-    movieDB = response.data 
+    movieDB = response.data.map(el=>el.show) 
     setMovieList(movieDB);
     }catch(error){
       setMovieList(json)
@@ -33,7 +33,7 @@ let movieDB =[]
   };
    //Filtro el objeto segun parametros de busqueda
    const results = !search ? movieList : movieList.filter((el) =>
-   el.show.name.toLowerCase().includes(search.toLowerCase()));
+   el.name.toLowerCase().includes(search.toLowerCase()));
 
    
   useEffect(() => {

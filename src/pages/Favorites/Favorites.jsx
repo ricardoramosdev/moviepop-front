@@ -1,10 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../auth/useAuth";
 import { Header } from "../../shared/Header/Header";
 import { MovieList } from "../MovieList/MovieList";
 import "./Favorites.scss";
-const URL = process.env.REACT_APP_API_URL
 export const Favorites = () => {
   const [movieList, setMovieList] = useState([]);
   const [search, setSearch] = useState("");
@@ -13,7 +11,7 @@ export const Favorites = () => {
 
   //Tomo el objeto de la API y pinto
   let getFavoritesMovies = () => {
-    let favMovies = auth.user.favoriteMovie.map(el=>JSON.parse(el))
+    let favMovies = JSON.parse(localStorage.getItem('currentUser')).favoriteMovie
     setMovieList(favMovies);
     console.log(favMovies)
     }
@@ -27,7 +25,7 @@ export const Favorites = () => {
   };
    //Filtro el objeto segun parametros de busqueda
    const results = !search ? movieList : movieList.filter((el) =>
-   el.show.name.toLowerCase().includes(search.toLowerCase()));
+   el.name.toLowerCase().includes(search.toLowerCase()));
 
    
   useEffect(() => {
